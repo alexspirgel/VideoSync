@@ -1,0 +1,28 @@
+{
+  "name": "@alexspirgel/video-sync",
+  "version": "1.0.0",
+  "author": "Alexander Spirgel",
+  "description": "A class for syncing the playback of one or more video elements.",
+  "license": "MIT",
+  "keywords": [
+    "video-sync",
+    "videosync",
+    "video",
+    "sync"
+  ],
+  "main": "video-sync.js",
+  "files": [
+    "/video-sync.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexspirgel/video-sync.git"
+  },
+  "homepage": "https://github.com/alexspirgel/video-sync#readme",
+  "bugs": {
+    "url": "https://github.com/alexspirgel/video-sync/issues"
+  },
+  "dependencies": {
+    "@alexspirgel/normalize-elements": "^1.0.0"
+  }
+}
