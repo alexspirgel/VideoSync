@@ -1,6 +1,6 @@
 {
   "name": "@alexspirgel/video-sync",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "author": "Alexander Spirgel",
   "description": "A class for syncing the playback of one or more video elements.",
   "license": "MIT",
