@@ -27,8 +27,7 @@ Download the normal or minified script from the `/dist` folder.
 
 ```js
 const videoSync = new VideoSync({
-	syncedVideoElements: '.video',
-	primarySyncedVideoElement: '.video--primary'
+	syncedVideoElements: '.video'
 });
 ```
 
