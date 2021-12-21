@@ -1,5 +1,7 @@
-# Video Sync
+# VideoSync
 A class for syncing the playback of one or more video elements.
+
+<a href="http://alexanderspirgel.com/video-sync/demo" target="_blank">View the demo →</a>
 
 ## Installation
 
@@ -24,5 +26,4 @@ const videoSync = new VideoSync({
 	maximumPlaybackRate: 3.00,
 	debug: false,
 });
-videoSync.play();
 ```

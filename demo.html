@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>VideoSync</title>
+		<script type="text/javascript" src="dist/video-sync.js"></script>
+		<style>
+			body {
+				margin : 0;
+				padding: 1rem;
+				color: #eeeeee;
+				background-color: #333333;
+			}
+			.demo-1 {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				width: 100%;
+			}
+			.demo-1__video-wrapper {
+				flex: 0 0 auto;
+				width: calc((100% / 3) - 1rem);
+			}
+			.demo-1__video {
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>VideoSync Demo</h1>
+		</header>
+		<main>
+			<div class="demo-1">
+				<div class="demo-1__video-wrapper">
+					<h3 class="demo-1__video-title">Secondary Video</h3>
+					<video class="demo-1__video demo-1__video--secondary" muted playsinline>
+						<source src="demo-assets/the-breathtaking-beauty-of-nature_clip_1920x1080.mp4" type="video/mp4">
+					</video>
+				</div>
+				<div class="demo-1__video-wrapper">
+					<h3 class="demo-1__video-title">Primary Video</h3>
+					<video class="demo-1__video demo-1__video--primary" muted playsinline controls>
+						<source src="demo-assets/the-breathtaking-beauty-of-nature_clip_1920x1080.mp4" type="video/mp4">
+					</video>
+				</div>
+				<div class="demo-1__video-wrapper">
+					<h3 class="demo-1__video-title">Secondary Video</h3>
+					<video class="demo-1__video demo-1__video--secondary" muted playsinline>
+						<source src="demo-assets/the-breathtaking-beauty-of-nature_clip_1920x1080.mp4" type="video/mp4">
+					</video>
+				</div>
+			</div>
+		</main>
+		<script>
+			const videoSync = new VideoSync({
+				syncedVideoElements: '.demo-1__video',
+				primarySyncedVideoElement: '.demo-1__video--primary',
+				debug: true,
+			});
+		</script>
+	</body>
+</html>

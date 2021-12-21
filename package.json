@@ -10,10 +10,13 @@
     "video",
     "sync"
   ],
-  "main": "video-sync.js",
+  "main": "src/video-sync.js",
   "files": [
-    "/video-sync.js"
+    "/src"
   ],
+  "scripts": {
+    "start": "webpack"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alexspirgel/video-sync.git"
@@ -23,6 +26,11 @@
     "url": "https://github.com/alexspirgel/video-sync/issues"
   },
   "dependencies": {
-    "@alexspirgel/normalize-elements": "^1.0.0"
+    "@alexspirgel/normalize-elements": "^1.0.2"
+  },
+  "devDependencies": {
+    "terser-webpack-plugin": "^5.2.5",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
   }
 }
