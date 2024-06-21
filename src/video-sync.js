@@ -292,21 +292,6 @@ class VideoSync {
 		}
 	}
 
-	forceExactPlaybackSync() {
-		if (!this.primarySyncedVideoElement) {
-			this.debugMessage(`Must have a 'primarySyncedVideoElement' to force exact playback sync.`);
-			return;
-		}
-		if (this.syncedVideoElements.length < 2) {
-			this.debugMessage(`Must have a at least 2 'syncedVideoElements' to force exact playback sync.`);
-			return;
-		}
-		if (this.primarySyncedVideoElement) {
-			this.currentTime(this.primarySyncedVideoElement.currentTime, this.primarySyncedVideoElement);
-			this.playbackRate(this.primarySyncedVideoElement.playbackRate, this.primarySyncedVideoElement);
-		}
-	}
-
 	startPlaybackRateSync() {
 		if (this.playbackRateSyncLoop) {
 			this.debugMessage(`Playback rate sync loop has already started.`);
@@ -316,7 +301,6 @@ class VideoSync {
 			this.debugMessage(`Must have a at least 2 'syncedVideoElements' to start playback rate syncing.`);
 			return;
 		}
-		this.forceExactPlaybackSync();
 		if (this.playbackRateSyncLoop) {
 			clearInterval(this.playbackRateSyncLoop);
 		}
