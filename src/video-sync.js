@@ -292,21 +292,6 @@ class VideoSync {
 		}
 	}
 
-	forceExactPlaybackSync() {
-		if (!this.primarySyncedVideoElement) {
-			this.debugMessage(`Must have a 'primarySyncedVideoElement' to force exact playback sync.`);
-			return;
-		}
-		if (this.syncedVideoElements.length < 2) {
-			this.debugMessage(`Must have a at least 2 'syncedVideoElements' to force exact playback sync.`);
-			return;
-		}
-		if (this.primarySyncedVideoElement) {
-			this.currentTime(this.primarySyncedVideoElement.currentTime, this.primarySyncedVideoElement);
-			this.playbackRate(this.primarySyncedVideoElement.playbackRate, this.primarySyncedVideoElement);
-		}
-	}
-
 	startPlaybackRateSync() {
 		if (this.playbackRateSyncLoop) {
 			this.debugMessage(`Playback rate sync loop has already started.`);
@@ -316,7 +301,6 @@ class VideoSync {
 			this.debugMessage(`Must have a at least 2 'syncedVideoElements' to start playback rate syncing.`);
 			return;
 		}
-		this.forceExactPlaybackSync();
 		if (this.playbackRateSyncLoop) {
 			clearInterval(this.playbackRateSyncLoop);
 		}
@@ -330,19 +314,21 @@ class VideoSync {
 			this.stopPlaybackRateSync();
 			return;
 		}
+
+		const playbackTimeRemaining = (this.primarySyncedVideoElement.duration - this.primarySyncedVideoElement.currentTime) / this.primarySyncedVideoElement.playbackRate;
+
 		for (let i = 0; i < this.syncedVideoElements.length; i++) {
 			const thisSyncedVideoElement = this.syncedVideoElements[i];
 			if (thisSyncedVideoElement !== this.primarySyncedVideoElement) {
-				const currentTimeDifference = this.primarySyncedVideoElement.currentTime - thisSyncedVideoElement.currentTime;
-				let compensatingPlaybackRate = ((Math.min(Math.max((currentTimeDifference / 2 + 1), this.minimumPlaybackRate), this.maximumPlaybackRate))).toFixed(2);
+				const currentTimeRemaining = thisSyncedVideoElement.duration - thisSyncedVideoElement.currentTime;
+				let compensatingPlaybackRate = ((Math.min(Math.max((currentTimeRemaining / playbackTimeRemaining), this.minimumPlaybackRate), this.maximumPlaybackRate))).toFixed(2);
 				if (compensatingPlaybackRate > .99 && compensatingPlaybackRate < 1.01) {
 					this.debugMessage('Video playback rate in sync with primary.', thisSyncedVideoElement);
-					compensatingPlaybackRate = 1.00;
 				}
 				else {
 					this.debugMessage(`Video new playback rate: ${compensatingPlaybackRate}.`, thisSyncedVideoElement);
-					thisSyncedVideoElement.playbackRate = compensatingPlaybackRate;
 				}
+				thisSyncedVideoElement.playbackRate = compensatingPlaybackRate;
 			}
 		}
 	}
